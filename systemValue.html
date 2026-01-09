@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>System Value Calculator</title>
+    <link rel="stylesheet" href="/style/lootcalc.css" />
+</head>
+<body>
+    <div class="formcarry-container">
+        <h1>Horizon's System Value</h1>
+        <form id="analysis-form" class="formcarry-form">
+    <div id="input-grid">
+        
+        <div id="left-inputs">
+            
+            <div class="input-group">
+                <label for="system-input">System</label>
+                <input type="text" id="system-input" name="system_name" value="J121116" required />
+            </div>
+
+            <div class="input-group">
+                <label for="structures-input">Structures</label>
+                <input type="text" id="structures-input" name="structures_count" value="0" required />
+            </div>
+            
+            <button type="submit" id="analyze-button">Analyze Scan</button>
+        </div>
+        
+        <div id="probe-scan-wrapper">
+            <label for="probe-scan-paste">Probe Scan Paste</label>
+            <textarea id="probe-scan-paste" name="scan_paste" placeholder="Copy and Paste Scan Results here..." rows="10"></textarea>
+        </div>
+    </div>
+</form>
+    </div>
+
+    <hr>
+    
+    <section id="results-area">
+        <h2>Scan Results Summary</h2>
+
+        <div id="summary-section">
+            <div class="summary-box">
+                <h4>Estimated System Worth</h4> <p id="grand-total-value" class="total-isk">Awaiting Data...</p>
+            </div>
+            <div class="summary-box">
+                <h4>Total Sites Found</h4>
+                <p id="total-sites-count">0</p>
+            </div>
+        </div>
+
+        <div id="results-container">
+            <table id="anomalies-table">
+                <thead>
+                    <tr>
+                        <th>Site Name</th>
+                        <th>Group</th>
+                        <th>Count</th>
+                        <th>Est. Base Value</th>
+                        <th>Total Worth (ISK)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+        </div>
+
+        <p id="status-message" class="hidden"></p>
+    </section>
+<script src="script/lootcalc.js"></script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,433 @@
+/* --- 2. Global Styles & NEW Layout Structure --- */
+body {
+    font-family: sans-serif;
+    /* REMOVED: display: flex; flex-direction: column; align-items: center; */
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0;
+    /* Use 0 margin to control spacing via padding/app-container */
+    padding: 20px;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: 810px 400px;
+    grid-template-rows: auto 810px auto auto;
+    grid-column-gap: 1px;
+    grid-row-gap: 1px;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+
+}
+
+.map-controls {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+
+.map-box {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-column-gap: 1px;
+    grid-row-gap: 1px;
+    column-gap: 1px;
+    row-gap: 1px;
+}
+
+.celestial-data {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 150px auto;
+    grid-column-gap: 1px;
+    grid-row-gap: 1px;
+    column-gap: 1px;
+    row-gap: 1px;
+}
+
+
+#legend-table {
+  border: 2px solid;
+  margin-top: 10px; 
+  font-size: 1.1em; 
+  padding: 10px;
+  color:v--text-color;
+  background-color: var(--panel-bg);
+  border-color: #008000;
+}
+
+.user-marker:hover use {
+    filter: brightness(1.5); /* Makes the marker glow when you hover over it */
+    cursor: grab;
+}
+
+.user-marker use {
+    vector-effect: non-scaling-stroke; /* Keeps lines thin when zooming */
+    pointer-events: none;
+}
+
+/* NEW: Main Flex Container 
+.app-container {
+  display: grid;
+  grid-template-columns: auto 800px;
+  grid-template-rows: auto auto 800px auto;
+  column-gap: 10px;
+  row-gap: 1em;
+}
+*/
+
+/* --- labels for celestials --*/
+
+#system-map text {
+    paint-order: stroke;
+    stroke: #000000;
+    stroke-width: 2px;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    font-weight: bold;
+}
+
+.celestial-label {
+    font-size: 9px;
+    fill: #888; /* Grey instead of bright white */
+    pointer-events: none; /* Make sure labels don't block clicks to the planets */
+}
+
+/* If the viewBox is large (zoomed out), hide the small labels */
+#system-map[viewBox*=" 800 800"] .celestial-label {
+    display: none;
+}
+
+
+/* Add this to your style section */
+.user-marker:hover {
+    filter: brightness(1.5);
+    cursor: grab;
+}
+
+.user-marker:active {
+    cursor: grabbing;
+}
+
+
+
+/* NEW: Left Column for Map and Buttons */
+
+
+/* NEW: Right Column for Data and Tactical Controls */
+#data-legend-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 350px;
+}
+
+/* Existing styles, cleaned up */
+h1 {
+    color: var(--highlight-color);
+    align-items: right;
+}
+
+h2 {
+    color: var(--highlight-color);
+    align-items: right;
+}
+
+#controls {
+
+    margin-top: 10px;
+    /* Use margin-top instead of margin-bottom */
+    margin-bottom: 0;
+    /* Removed previous margin-bottom */
+}
+
+button {
+    padding: 8px 15px;
+    background-color: var(--highlight-color);
+    color: var(--bg-color);
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* --- 3. SVG Coloring using Variables (Remains the same) --- */
+.Star,
+.Barren,
+.Lava,
+.Storm,
+.Temperate,
+.Oceanic,
+.Gas,
+.Ice,
+.Shattered,
+.Moon {
+    cursor: pointer;
+    /* Simplified cursor pointer for all clickable celestials */
+}
+
+.Star {
+    fill: var(--star-color);
+    cursor: default;
+}
+
+/* Star is not clickable */
+.Barren {
+    fill: var(--barren-color);
+}
+
+.Lava {
+    fill: var(--lava-color);
+}
+
+.Storm {
+    fill: var(--storm-color);
+}
+
+.Temperate {
+    fill: var(--temperate-color);
+}
+
+.Oceanic {
+    fill: var(--oceanic-color);
+}
+
+.Gas {
+    fill: var(--gas-color);
+}
+
+.Ice {
+    fill: var(--ice-color);
+}
+
+.Shattered {
+    fill: var(--shattered-color);
+}
+
+.Moon {
+    fill: var(--moon-color);
+}
+
+.orbit {
+    stroke: var(--orbit-color);
+    stroke-width: 1;
+    fill: none;
+}
+
+/* --- 1. CSS Variables (Themes) --- */
+:root {
+    /* Default: Dark Theme */
+    --bg-color: #1a1a2e;
+    --text-color: #ffffff;
+    --panel-bg: #2c2c4d;
+    --highlight-color: #4caf50;
+    --orbit-color: #333;
+    --border-color: #444;
+    /* Added for consistency */
+    --shadow-color: rgba(0, 255, 0, 0.2);
+    /* Added for consistency */
+    --stargate-color: #00ff00;
+    /* Stargate default */
+    --stargate-stroke-color: #ffffff;
+    /* SVG Fill Colors */
+    --star-color: #ffff00;
+    --barren-color: #8b4513;
+    --lava-color: #ff0000;
+    --storm-color: #00008b;
+    --temperate-color: #008000;
+    --oceanic-color: #add8e6;
+    --gas-color: #d3d3d3;
+    --ice-color: #00ffff;
+    --shattered-color: #e014b4;
+    --moon-color: #444;
+}
+
+.light-theme {
+    /* ... (Your light theme variables remain the same) ... */
+    --bg-color: #f0f0f5;
+    --text-color: #1a1a2e;
+    --panel-bg: #ffffff;
+    --highlight-color: #007bff;
+    --orbit-color: #aaa;
+    --border-color: #ccc;
+    --shadow-color: rgba(0, 0, 255, 0.2);
+    /* ... (rest of colors) ... */
+    --star-color: #ffcc00;
+    --barren-color: #b5651d;
+    --lava-color: #cc0000;
+    --storm-color: hsl(240, 50%, 40%);
+    --temperate-color: #339933;
+    --oceanic-color: #6699ff;
+    --gas-color: #999999;
+    --ice-color: #00ffff;
+    --shattered-color: #e014b4;
+    --moon-color: #777;
+}
+
+.Stargate {
+    fill: var(--stargate-color);
+    stroke: var(--stargate-stroke-color);
+    stroke-width: 0.5;
+    /* Removed cursor: pointer; as per previous decision */
+}
+
+/* --- 4. Map and Panel Styles --- */
+#map-container {
+    width: 800px;
+    height: 800px;
+    border: 2px solid var(--border-color);
+    box-shadow: 0 0 20px var(--shadow-color);
+    background-color: #000;
+    /* Removed margin-bottom: 20px; as controls are right below it */
+}
+
+/* Updated Info Panel to be flexible on the right side */
+#info-panel {
+    width: auto;
+    /* Use auto width since it's in a flex container */
+    min-height: 100px;
+    padding: 15px;
+    background-color: var(--panel-bg);
+    border: 1px solid var(--highlight-color);
+    box-shadow: 0 0 10px var(--shadow-color);
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* Updated Legend Table to be flexible on the right side */
+#system-data-legend {
+    width: 100%;
+    /* Use 100% width of the data-legend-container */
+    border-collapse: collapse;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    /* Reduced margin */
+    color: var(--text-color);
+}
+
+#system-data-legend th,
+#system-data-legend td {
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    text-align: left;
+}
+
+#system-data-legend th {
+    background-color: var(--highlight-color);
+    color: var(--bg-color);
+}
+
+/* --- New CSS for Hiding the D-Scan Overlay --- */
+.hidden-scan-ring {
+    visibility: hidden;
+    /* Hides the element but preserves its space, ideal for toggles */
+    opacity: 0;
+    /* Smooth transition (optional) */
+    transition: opacity 0.3s;
+}
+
+/* --- 5. Custom Marker Controls Container --- */
+
+/* Custom Marker Controls (now inside #custommarkerarea) */
+#custommarkerarea {
+    padding: 8px;
+    justify-content: flex-start;
+}
+
+/* Override default center */
+#custommarkerarea #customMarkerControlsContainer {
+    display: grid;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+#custommarkerarea #prepareCustomMarkerButton {
+    width: 100%;
+    padding: 8px 5px;
+    font-size: 12px;
+    background-color: #2a2d30;
+    color: #00A8FF;
+    border: 1px solid #101010;
+    cursor: pointer;
+    text-align: center;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+}
+
+#custommarkerarea #prepareCustomMarkerButton:hover {
+    background-color: #3a3d40;
+}
+
+#custommarkerarea #customMarkerControls {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    background-color: #282828;
+    border: 1px solid #101010;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#custommarkerarea #customMarkerControls h4 {
+    margin: 0 0 8px 0;
+    font-size: 13px;
+    color: #00A8FF;
+    text-align: center;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #444;
+}
+
+#custommarkerarea #customMarkerControls div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#custommarkerarea #customMarkerControls label {
+    font-size: 11px;
+    width: 50px;
+    flex-shrink: 0;
+    color: #bbb;
+}
+
+#custommarkerarea #customMarkerControls select {
+    flex-grow: 1;
+    padding: 4px;
+    background-color: #1a1a1a;
+    color: #c8c8c8;
+    border: 1px solid #444;
+    border-radius: 2px;
+    font-size: 11px;
+}
+
+#custommarkerarea #customMarkerControls button#cancelCustomMarkerButton {
+    margin-top: 8px;
+    padding: 6px;
+    font-size: 11px;
+    background-color: #4a4d50;
+    color: #ccc;
+    border: 1px solid #101010;
+    width: 100%;
+}
+
+#custommarkerarea #customMarkerControls button#cancelCustomMarkerButton:hover {
+    background-color: #5a5d60;
+}
+
+
+/*.custom-marker-shape { /* Add if you need common styling for all custom shapes */
+
+
+
+/* ----- GRID LAYOUT TEST ----*/

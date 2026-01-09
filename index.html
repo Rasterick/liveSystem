@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catskull Horizons</title>
+    <link rel="icon" href="/path/to/your/favicon.ico" type="image/x-icon"> 
+
+    <style>
+        /* --- General Body & Base Styling --- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0d; /* Deep space background */
+            color: #e0e0e0; /* Light text for contrast */
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll on some effects */
+        }
+
+        /* --- Custom Scrollbar for a sleek look --- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            width: 90%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed; /* Keep header on top */
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 13, 0.8); /* Slightly transparent background */
+            backdrop-filter: blur(5px); /* Frosted glass effect */
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+        }
+
+        .logo-img {
+            height: 40px; /* Adjust logo size */
+            margin-right: 10px;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3)); /* Subtle glow */
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #c0c0c0;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(76, 175, 80, 0.7); /* Green glow on hover */
+        }
+        
+        /* --- Hero Section (Main Landing Area) --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('https://intel.grim-horizon.org/images/imageC.jpg') no-repeat center center / cover; /* Placeholder space background */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Dark overlay for text readability */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        .hero-title {
+            font-size: 4em;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+            letter-spacing: 2px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5em;
+            color: #a0a0a0;
+            margin-bottom: 40px;
+        }
+
+        .hero-cta-button {
+            display: inline-block;
+            background: linear-gradient(90deg, #4CAF50 0%, #8BC34A 100%); /* Green gradient */
+            color: #fff;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .hero-cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.6);
+        }
+
+        /* --- Navigation Grid Section --- */
+        .nav-grid-section {
+            padding: 80px 5%;
+            background: linear-gradient(180deg, #0a0a0d 0%, #1a1a20 100%);
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.8em;
+            margin-bottom: 60px;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-card {
+            background: #1c1c24;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: left;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(76, 175, 80, 0.2); /* Subtle green border */
+        }
+
+        .nav-card::before { /* Glowing border effect */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            background: radial-gradient(circle at top left, rgba(76, 175, 80, 0.3), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .nav-card:hover::before {
+            opacity: 1;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(76, 175, 80, 0.5);
+        }
+
+        .nav-card h3 {
+            font-size: 1.8em;
+            color: #ffffff;
+            margin-bottom: 15px;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-card p {
+            color: #a0a0a0;
+            font-size: 1.05em;
+            margin-bottom: 25px;
+        }
+
+        .nav-card a {
+            display: inline-block;
+            background: #4CAF50; /* Green accent */
+            color: #fff;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .nav-card a:hover {
+            background: #8BC34A; /* Lighter green on hover */
+        }
+
+        /* --- Information Sections --- */
+        .info-section {
+            padding: 80px 5%;
+            background: #0a0a0d;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .info-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            text-align: left;
+        }
+
+        .info-block h3 {
+            font-size: 2em;
+            color: #ffffff;
+            margin-bottom: 15px;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+        }
+
+        .info-block p {
+            color: #b0b0b0;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #101015;
+            color: #888;
+            padding: 40px 5%;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+
+        .social-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .social-links a {
+            color: #e0e0e0;
+            font-size: 1.8em;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #4CAF50; /* Green highlight for social icons */
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5em;
+            }
+            .hero-subtitle {
+                font-size: 1.2em;
+            }
+            nav ul {
+                display: none; /* Hide main nav on small screens, could use a hamburger menu */
+            }
+            header {
+                justify-content: center; /* Center logo if no nav */
+            }
+            .section-title {
+                font-size: 2em;
+            }
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2em;
+            }
+            .hero-subtitle {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="/images/horizonlogo.jpg" alt="Catskull Horizons Logo" class="logo-img">
+            Catskull Horizons
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#about">About</a></li>
+		<li><a href="https://gpi-services.co.uk/combatIntel/contact.html" target="_blank">Contact Abon</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Navigate the Unknown</h1>
+                <p class="hero-subtitle">Unlock deeper insights into the vast expanse of space with our suite of tactical analysis tools.</p>
+                <a href="#tools" class="hero-cta-button">Explore Tools</a>
+            </div>
+        </section>
+
+        <section id="tools" class="nav-grid-section">
+            <h2 class="section-title">Our Analytical Suite</h2>
+            <div class="nav-grid">
+                <div class="nav-card">
+                    <h3>D-Scan Analyser</h3>
+                    <p>Analyse D-Scan results for threat assessment, identify signatures, and share findings with your fleet.</p>
+                    <a href="https://intel.grim-horizon.org/dscan.html" target="_blank">Launch Tool</a>
+                </div>
+                <div class="nav-card">
+                    <h3>System Worth Calculator</h3>
+                    <p>Calculate the estimated value of anomalies and resources within a system from your probe scan data.</p>
+                    <a href="https://intel.grim-horizon.org/systemValue.html" target="_blank">Launch Tool</a>
+                </div>
+                <div class="nav-card">
+                    <h3>Combat Intel Database</h3>
+                    <p>Retrieve and analyze combat data on characters, corporations, and alliances to understand their associations.</p>
+                    <a href="https://intel.grim-horizon.org/combatintel.html" target="_blank">Launch Tool</a>
+                </div>
+                <div class="nav-card">
+                    <h3>Wormhole System Mapper</h3>
+                    <p>Visualize and share tactical maps of wormhole systems, providing critical spatial awareness for your operations.</p>
+                    <a href="https://gpi-services.co.uk/system_mapper.html" target="_blank">Launch Tool</a>
+                </div>
+		<div class="nav-card">
+                    <h3>System Map</h3>
+                    <p>Visualise solar sytems, their celestials and gates.</p>
+                    <a href="https://intel.grim-horizon.org/svgMap.html" target="_blank">Launch Tool</a>               	
+		</div>
+
+		 <div class="nav-card">
+                    <h3>Local Analysis</h3>
+                    <p>Get stats on pilots in system from Local chat.</p>
+                    <a href="https://intel.grim-horizon.org/pilots.html" target="_blank">Launch Tool</a>
+                </div>
+		<div class="nav-card">
+                    <h3>Chat Log Analyser</h3>
+                    <p>Process your in-game chat logs to quickly calculate loot distribution for your fleets and operations.</p>
+                    <a href="https://intel.grim-horizon.org/loganalyser.html" target="_blank">Launch Tool</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="info-section">
+            <h2 class="section-title">Beyond the Horizon</h2>
+            <div class="info-content">
+                <div class="info-block">
+                    <h3>Strategic Advantage</h3>
+                    <p>What does Sun Tzu say about knowledge?<P>
+Deep knowledge is to be aware of disturbance before disturbance, to be aware of danger before danger, to be aware of destruction before destruction, to be aware of calamity before calamity.</p
+>
+                </div>
+                <div class="info-block">
+                    <h3>Seamless Integration</h3>
+                    <p>Integration involves strategically aligning with circumstances rather than forcing a solution, treating the entire situation as a dynamic whole to achieve victory with minimal conflict. This concept, which can be applied to business or warfare, means adapting to the "flow" of a situation and integrating all variables to find the optimal path forward. Key ideas include avoiding direct confrontation when possible, understanding your enemy, and capturing what you can intact rather than destroying it.</p>
+                </div>
+                <div class="info-block">
+                    <h3>Community Driven</h3>
+                    <p>The Art of War, discusses the importance of unity and loyalty within one's own group and the strategic value of understanding one's allies and adversaries. He does not offer philosophical advice on general friendship in a personal sense, as his writing is a military treatise focused on strategy and conflict.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <p>&copy; 2025 Catskull Horizons. All rights reserved.</p>
+        <div class="social-links">
+            <!-- <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a> -->
+            <a href="https://discord.com/channels/1169438926872789123/1425293607555825674" aria-label="Discord" target="_blank"><i class="fab fa-discord"></i></a>
+            </div>
+    </footer>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizon Intel Tools</title>
+    <link rel="stylesheet" href="style/intel.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="header-title">Horizon Intel Tool</div>
+        <div class="intel-form">
+            <input type="text" class="intel-input" placeholder="Enter Character, Corporation or Alliance">
+            <button class="intel-button">Get Intel</button>
+            <button class="intel-button" id="copy-url-button">Copy URL</button>
+        </div>
+        <nav class="top-nav">
+            <ul>
+                <li class="menu-item">
+                    <a href="#">Home</a>
+                    <ul class="dropdown">
+                        <li><a href="https://gpi-services.co.uk/index.html"  target="_blank">Loot Calculator</a></li>
+                        <li><a href="https://gpi-services.co.uk/DscanAnalyserV3.html"  target="_blank">D-Scan Tool</a></li>
+                        <li><a href="https://gpi-services.co.uk/system_mapper.html"   target="_blank">System Mapper Tool</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#">Information</a>
+                    <ul class="dropdown">
+                        <li><a href="help.html" target="_blank">Information</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#">Contact</a>
+                    <ul class="dropdown">
+                        <li><a href="contact.html" target="_blank">Contact Abon</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#">Help</a>
+                    <ul class="dropdown">
+                        <li><a href="#">Item 1</a></li>
+                        <li><a href="#">Item 2</a></li>
+                        <li><a href="#">Item 3</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="info-column">
+            <div class="info-box">
+                <div class="info-box-header">Character:</div>
+                <div class="info-box-content"></div>
+            </div>
+            <div class="info-box">
+                <div class="info-box-header">: Combat (Last 10)</div>
+                <div class="info-box-content chart-container"><canvas id="combatActivityChart"></canvas></div>
+            </div>
+        </div>
+        <div class="info-column">
+            <div class="info-box">
+                <div class="info-box-header">: Associations</div>
+                <div class="info-box-content chart-container">
+                    <canvas id="associationsChartCanvas"></canvas>
+                </div>
+            </div>
+            <div class="info-box">
+                <div class="info-box-header"><span id="last10KillsLossesHeader">: Last 10 Kills/Losses</span> <button class="toggle-kills
+-losses">Toggle</button></div>
+                <div class="info-box-content" id="last10KillsLossesContent"></div>
+            </div>
+        </div>
+        <div class="info-column">
+            <div class="info-box full-height">
+                <div class="info-box-header">Top Stats</div>
+                <div class="info-box-content chart-container">
+                    <h4>Top Ships</h4>
+                    <canvas id="topShipsChart"></canvas>
+                    <h4>Top Systems</h4>
+                    <canvas id="topSystemsChart"></canvas>
+                    <h4>Top Corporations</h4>
+                    <canvas id="topCorpsChart"></canvas>
+                    <h4>Top Alliances</h4>
+                    <canvas id="topAlliancesChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script/intel.js"></script>
+</body>
+</html>

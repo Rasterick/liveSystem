@@ -1,0 +1,97 @@
+/68
+<?php
+// NOTE: Must be the absolute first line of the file.
+
+// --- Headers for JSON Output and CORS ---
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *'); // Necessary for local file testing
+
+// --- Configuration (REPLACE PASS/USER) ---
+$host = "db";
+$user = "root"; 
+$pass = "codwings1"; // Your password
+$db = "evedata";
+$charset = 'utf8mb4';
+
+// --- Database Connection Setup (ADD THIS BLOCK) ---
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE             => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE  => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES    => false,
+];
+
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (\PDOException $e) {
+    // If connection fails, output error and stop gracefully
+    http_response_code(500);
+    echo json_encode(['error' => 'Database connection failed.']);
+    exit;
+}
+// ---------------------------------------------------
+
+
+// --- Input Handling ---
+$searchTerm = isset($_GET['term']) ? trim($_GET['term']) : '';
+
+if (empty($searchTerm)) {
+    echo json_encode([]); // Return empty array if no search term
+    exit;
+}
+
+// Security: Sanitize the input for safe display
+//$searchTerm = htmlspecialchars($searchTerm);
+
+// PDO requires wildcards to be part of the bound parameter
+$searchParam = $searchTerm . '%';
+
+// --- SQL Query Definition ---
+// NOTE: Using the correct table case mapSolarSystem
+
+
+
+// --- SQL Query Definition ---
+$sql = "SELECT
+            solarSystemName
+        FROM
+            mapSolarSystems
+        WHERE
+            LOWER(solarSystemName) LIKE LOWER(?)
+        ORDER BY
+            solarSystemName ASC
+        LIMIT
+            10";
+
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$searchTerm]);
+
+    // Fetch ALL results at once
+    $systemNames = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+    // ----------------------------------------------------
+    // ADDED: Send the data to the browser before stopping!
+    echo json_encode($systemNames);
+    // ----------------------------------------------------
+
+    exit; // Now safely terminates the script
+
+} catch (\PDOException $e) {
+    // Handle the database error gracefully
+    http_response_code(500); 
+
+    echo json_encode(['error' => 'Database search failed.']);
+    error_log("Autocomplete DB Error: " . $e->getMessage());
+
+    exit;
+}
+
+
+
+
+
+// --- Send JSON Response ---
+echo json_encode($systemNames);
+
+?>

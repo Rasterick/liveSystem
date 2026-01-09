@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="/style/tabstyle.css" />
+    <link rel="stylesheet" href="/style/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Catskull Horizons Intel Applications</h1>
+    </header>
+
+    <div class="tab-container">
+      <div class="tabs">
+        <button class="tab" data-tab="tab1">IFA Chat Analyser</button>
+        <button class="tab" data-tab="tab2">System Loot Calculator</button>
+        <button class="tab" data-tab="tab3">Tab 3</button>
+        <button class="tab" data-tab="tab4">Tab 4</button>
+        <button class="tab" data-tab="tab5">Tab 5</button>
+        <button class="tab" data-tab="tab6">Tab 6</button>
+      </div>
+
+      <div class="tab-content">
+        <div id="tab1" class="tab-page active">
+          <h1>IFA Chat Log Analyzer</h1>
+          <p>
+            Select a chat log file to process. The analysis will be performed
+            between the first message and the message containing "IFA end".<BR>
+            <i> Usually found here: C:\Users\USER\Documents\EVE\logs\Chatlogs </i>
+          </p>
+
+          <input type="file" id="logFile" accept=".txt" />
+          <button id="processButton">Process Log</button>
+
+          <h2>Results</h2>
+          <div id="resultsTableContainer">
+            <p>Results will appear here after processing.</p>
+          </div>
+
+        </div>
+
+        <div id="tab2" class="tab-page">
+          <div class="content-wrapper">
+          <h2>Tab 3 Content</h2>
+          <p>Placeholder for Tab 3 content.</p>
+<div id="tab1" class="tab-page active">
+          <h1>IFA Chat Log Analyzer</h1>
+          <p>
+            Select a chat log file to process. The analysis will be performed
+            between the first message and the message containing "IFA end".<BR>
+            <i> Usually found here: C:\Users\USER\Documents\EVE\logs\Chatlogs </i>
+          </p>
+
+          <input type="file" id="logFile" accept=".txt" />
+          <button id="processButton">Process Log</button>
+
+          <h2>Results</h2>
+          <div id="resultsTableContainer">
+            <p>Results will appear here after processing.</p>
+          </div>
+
+        </div>
+
+
+
+        <div id="tab3" class="tab-page">
+          <h2>Tab 3 Content</h2>
+          <p>Placeholder for Tab 3 content.</p>
+        </div>
+        <div id="tab4" class="tab-page">
+          <h2>Tab 4 Content</h2>
+          <p>Placeholder for Tab 4 content.</p>
+        </div>
+        <div id="tab5" class="tab-page">
+          <h2>Tab 5 Content</h2>
+          <p>Placeholder for Tab 5 content.</p>
+        </div>
+        <div id="tab6" class="tab-page">
+          <h2>Tab 6 Content</h2>
+          <p>Placeholder for Tab 6 content.</p>
+        </div>
+      </div>
+    </div>
+    <script src="/script/chatlog.js"</scrpit>    	
+    <script src="/script/tabscript.js"></script>
+    </body>
+</html>

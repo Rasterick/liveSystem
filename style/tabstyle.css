@@ -1,0 +1,61 @@
+body {
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    text-align: center;
+}
+
+.tab-container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    /*background-image: url('Firefly_A star scape and on the left a large gas giant planet, no spaceships 391287.jpg');*/
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.tabs {
+    display: flex;
+}
+
+.tab {
+    /*background-image: url('Firefly_A star scape and on the left a large gas giant planet, no spaceships 391287.jpg');*/
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex: 1;
+}
+
+.tab:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.tab.active {
+    /*background-image: url('Firefly_A star scape and on the left a large gas giant planet, no spaceships 391287.jpg');*/
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.tab-content {
+    padding: 20px;
+}
+
+.tab-page {
+    display: none;
+}
+
+.tab-page.active {
+    display: block;
+}

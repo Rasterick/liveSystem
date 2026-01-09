@@ -1,0 +1,242 @@
+        body {
+            background-color: #000B1A; 
+            color: #ADD8E6; 
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            background-image: url('../images/Background.jpg'); 
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; 
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .content-wrapper {
+            width: 95%;
+            max-width: 1200px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; 
+            background-color: rgba(0, 11, 26, 0.88); 
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            /* overflow-y: auto; /* Removed as content-wrapper is not the main scroll parent anymore */
+        }
+
+
+        h1, h2 {
+            color: #ADD8E6; 
+            margin-top: 20px;
+            margin-bottom: 5px;
+            align-self: flex-start; 
+        }
+        h1 { margin-bottom: 15px;}
+
+        .input-area-container {
+            display: flex;
+            width: 100%;
+            margin-bottom: 15px;
+            align-items: flex-start; 
+        }
+
+        textarea {
+            flex-grow: 1; 
+            /* width: 50%; Adjusted with flex-grow */
+            min-height: 225px; 
+            background-color: #ffffff;
+            color: #000000;
+            border: 1px solid #ADD8E6;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 14px;
+            box-sizing: border-box;
+            margin-right: 20px; 
+        }
+
+        .recon-ships-input-area {
+            flex-shrink: 0; 
+            width: 250px; 
+            padding: 10px;
+            background-color: rgba(68, 71, 90, 0.7); 
+            border-radius: 5px;
+        }
+        .recon-ships-input-area h3 {
+            color: #f8f8f2;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .recon-ships-input-area div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .recon-ships-input-area label {
+            color: #f8f8f2;
+            margin-right: 10px;
+        }
+        .recon-ships-input-area input[type="number"] {
+            width: 60px;
+            padding: 5px;
+            border-radius: 3px;
+            border: 1px solid #6272a4;
+            background-color: #ffffff;
+            color: #282a36;
+        }
+        
+        .top-buttons, .action-buttons, .additional-inputs {
+            display: flex;
+            justify-content: flex-start; 
+            width: 100%; 
+            margin-bottom: 15px;
+            flex-wrap: wrap; 
+        }
+        
+        .additional-inputs div {
+            margin-right: 20px;
+            margin-bottom: 10px; 
+        }
+        .additional-inputs label {
+            display: block;
+            margin-bottom: 5px;
+            color: #f8f8f2;
+        }
+        .additional-inputs input[type="text"],
+        .additional-inputs input[type="number"] {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #6272a4;
+            background-color: #ffffff;
+            color: #282a36;
+        }
+
+
+        .action-buttons {
+            margin-bottom: 20px;
+        }
+
+
+        button {
+            background-color: #04B2D9; 
+            color: #ADD8E6;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            margin-right: 10px; 
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        button:last-child {
+            margin-right: 0;
+        }
+
+        button:hover {
+            background-color: #04C2E9; 
+        }
+        
+        button:active {
+            background-color: #0477BF; 
+        }
+        
+        .system-info-container {
+             width: 100%;
+             margin-bottom: 25px;
+             align-self: flex-start;
+        }
+
+        .table-container {
+            width: 100%; 
+            overflow-x: auto;
+            margin-bottom: 25px;
+            align-self: flex-start;
+        }
+
+        #classSummaryTableContainer,
+        #unrecognizedEntriesTableContainer {
+            width: 50%; 
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 5px; 
+            background-color: #fafae5;
+            color: #000000;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .info-table { 
+            width: auto; 
+            min-width: 300px;
+            max-width: 450px; 
+            margin-top: 10px;
+        }
+        .info-table td:first-child {
+            font-weight: bold;
+            width: auto; 
+            padding-right: 10px;
+        }
+         .info-table td:nth-child(2) {
+            width: 100%; 
+        }
+
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px; 
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #000B1A; 
+            color: #ADD8E6; 
+            font-weight: bold;
+        }
+
+        table:not(.ship-summary-table) tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+        table:not(.ship-summary-table) tr:nth-child(even) {
+            background-color: #e6f7ff; 
+        }
+        .ship-summary-table tr:nth-child(odd),
+        .ship-summary-table tr:nth-child(even) {
+            background-color: #ffffff; 
+        }
+
+
+        td a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        td a:hover {
+            text-decoration: underline;
+        }
+        #malformedLinesInfo {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: rgba(51, 51, 51, 0.8); 
+            border-radius: 5px;
+            width:100%;
+            box-sizing: border-box;
+            color: #f8f8f2; 
+        }
+
+        /* Sensor Background Colors */
+        .sensor-radar { background-color: #FFFFE0 !important; /* Pale Yellow */ }
+        .sensor-gravimetric { background-color: #ADD8E6 !important; /* Pale Blue */ }
+        .sensor-magnetometric { background-color: #90EE90 !important; /* Pale Green */ }
+        .sensor-ladar { background-color: #FFB6C1 !important; /* Light Red (LightPink) */ }
+        .sensor-unknown { background-color: inherit; 
+	}

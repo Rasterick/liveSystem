@@ -1,4 +1,15 @@
-# YoYo AI version control directory
+# Ignore generic config files just in case
+config.php
+db.php
+db_connect.php
+*.env
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore vendor folders (if you use Composer later)
+vendor/# YoYo AI version control directory
 .yoyo/
 
 # Composer dependencies

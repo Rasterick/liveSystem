@@ -1,0 +1,291 @@
+/* ... Keep existing :root and body styles ... */
+:root {
+    --bg-dark: #121212;
+    --card-bg: #1e1e1e;
+    --text-main: #e0e0e0;
+    --text-muted: #888;
+    --red: #e74c3c;
+    --orange: #e67e22;
+    --green: #27ae60;
+    --grim-purple: #5a2d81;
+}
+
+body {
+    background: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+}
+
+.controls {
+    margin-bottom: 20px;
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+textarea {
+    width: 100%;
+    height: 80px;
+    background: #0d0d0d;
+    color: #fff;
+    border: 1px solid #333;
+    padding: 10px;
+    font-family: monospace;
+    resize: vertical;
+}
+button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+button:hover { background: #2980b9; }
+
+/* Add to style/pilots.css */
+clearbutton {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+#clearBtn:hover {
+    background-color: #666 !important; /* Lighter gray on hover */
+}
+
+/* Main Grid */
+#cardGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
+    gap: 20px;
+}
+
+.pilot-card {
+    background: var(--card-bg);
+    border-radius: 6px;
+    padding: 15px;
+    border-left: 5px solid var(--green);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: column;
+}
+
+.pilot-card.threat-high { border-left-color: var(--red); }
+.pilot-card.threat-medium { border-left-color: var(--orange); }
+
+/* --- HEADER --- */
+.card-header {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    align-items: flex-start;
+}
+.portrait { 
+    width: 50px; height: 50px; 
+    border-radius: 50%; 
+    border: 2px solid #333;
+}
+.header-info { 
+    flex-grow: 1; 
+    overflow: hidden; 
+}
+.header-info h3 { 
+    margin: 0 0 4px 0; 
+    font-size: 1.2em; 
+    color: #fff; 
+}
+
+/* Corp/Alliance Info */
+.org-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+.org-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85em;
+    color: #ccc;
+}
+.org-icon {
+    width: 16px; height: 16px;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+.org-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px; /* Prevents layout break on long names */
+    display: inline-block;
+}
+.ticker { color: var(--text-muted); font-size: 0.9em; margin-left: 4px; }
+
+/* Danger Badge */
+.danger-score { 
+    text-align: right;
+    background: #141414;
+    padding: 4px 8px;
+    border-radius: 4px;
+    min-width: 55px;
+    border: 1px solid #333;
+}
+.danger-val { font-size: 1.2em; font-weight: bold; }
+.danger-unit { font-size: 0.7em; opacity: 0.7; }
+.danger-label { font-size: 0.55em; color: #888; letter-spacing: 1px; text-transform: uppercase; margin-top: -2px; }
+
+.high-text .danger-val { color: var(--red); }
+.medium-text .danger-val { color: var(--orange); }
+.low-text .danger-val { color: var(--green); }
+
+/* Stats Grid - FIXED FOR ENCROACHING TEXT */
+.stats-grid-container {
+    margin-bottom: 15px;
+    background: #181818;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #2a2a2a;
+}
+.stat-row {
+    display: grid;
+    /* 4 Cols: Label Value |Gap| Label Value */
+    grid-template-columns: max-content 1fr max-content 1fr; 
+    column-gap: 15px; /* Forced space between the two columns */
+    row-gap: 5px;
+    align-items: center;
+    font-size: 0.85em;
+    margin-bottom: 4px;
+}
+.label {
+    color: #777;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    white-space: nowrap; /* Prevent label wrapping */
+}
+.value {
+    color: #ddd;
+    font-weight: bold;
+    text-align: right;
+    white-space: nowrap; /* Prevent value wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.stat-green { color: var(--green); }
+.stat-red { color: var(--red); }
+
+/* --- SUMMARY BAR --- */
+.summary-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    justify-content: center; /* or flex-start */
+    flex-wrap: wrap;
+}
+
+.summary-item {
+    background: #1e1e1e;
+    padding: 10px 20px;
+    border-radius: 6px;
+    min-width: 120px;
+    text-align: center;
+    border: 1px solid #333;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.sum-label {
+    display: block;
+    font-size: 0.75em;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+.sum-value {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Colored top borders for summary items */
+.threat-high-border { border-top: 3px solid var(--red); }
+.threat-medium-border { border-top: 3px solid var(--orange); }
+.threat-low-border { border-top: 3px solid var(--green); }
+
+
+/* --- HEADER ADJUSTMENTS FOR AGE --- */
+.name-age-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+.name-age-row h3 {
+    margin: 0;
+    /* ensure name doesn't push age off if too long */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 160px; 
+}
+.pilot-age {
+    background: #252525;
+    color: #aaa;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 1px 8px;
+    font-size: 0.75em;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+/* Lists */
+.top-lists {
+    display: flex;
+    gap: 10px;
+    margin: 0 0 15px 0;
+    font-size: 0.8em;
+}
+.list-col { flex: 1; }
+.list-col small { 
+    text-transform: uppercase; 
+    color: #666; 
+    display: block; 
+    margin-bottom: 5px; 
+    border-bottom: 1px solid #333; 
+}
+.list-col ul { list-style: none; padding: 0; margin: 0; }
+.list-col li { display: flex; justify-content: space-between; margin-bottom: 3px; color: #aaa; }
+.list-col li .count { color: #fff; font-weight: bold; }
+
+/* Buttons */
+.actions {
+    display: flex;
+    gap: 5px;
+    margin-top: auto;
+}
+.btn {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+.btn:hover { background: #333; color: #fff; }
+.btn-grim { background: var(--grim-purple); color: #fff; }
+.btn-grim:hover { background: #7239a3; }

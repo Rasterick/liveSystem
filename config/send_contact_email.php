@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -29,7 +32,8 @@ function parseEnv($filePath) {
 }
 
 try {
-    parseEnv(__DIR__ . '/../.env');
+
+    parseEnv(__DIR__ . '/../../.env');
 } catch (Exception $e) {
     http_response_code(500);
     header('Content-Type: application/json');
@@ -54,13 +58,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         //Server settings
+	$mail->SMTPDebug = SMTP::DEBUG_SERVER;
         $mail->isSMTP();
         $mail->Host       = getenv('MAIL_HOST');  // Set the SMTP server to send through
         $mail->SMTPAuth   = true;
         $mail->Username   = getenv('MAIL_USERNAME'); // SMTP username
         $mail->Password   = getenv('MAIL_PASSWORD');        // SMTP password
-        $mail->SMTPSecure = getenv('MAIL_ENCRYPTION'); // MailHog does not use encryption
-        $mail->Port       = getenv('MAIL_PORT');
+        //$mail->SMTPSecure = getenv('MAIL_ENCRYPTION'); // MailHog does not use encryption
+        //$mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+	
+	$mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS; // <--- Use SMTPS constant
+	$mail->Port       = 465;
+	//$mail->Port       = getenv('MAIL_PORT');
 
         //Recipients
         $mail->setFrom('peteabonriff@gmail.com', 'Mailer');

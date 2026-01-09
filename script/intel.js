@@ -30,6 +30,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+document.getElementById('clearBtn').addEventListener('click', () => {
+    // This grabs the "base" URL (e.g., "http://mysite.com/app.html")
+    // ignoring any query parameters or hashes
+    const cleanURL = window.location.origin + window.location.pathname;
+    
+    // Forces the browser to navigate to this clean URL, effectively 
+    // reloading the page from scratch.
+    window.location.href = cleanURL;
+});
+
     getIntelButton.addEventListener('click', async () => {
         const entityName = intelInput.value.trim();
         if (!entityName) {
@@ -45,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             // Step 1: Fetch stats from the PHP backend
-            const zkbResponse = await fetch(`/combatIntel/config/get_zkb_stats.php?name=${encodeURIComponent(entityName)}`);
+            const zkbResponse = await fetch(`config/get_zkb_stats.php?name=${encodeURIComponent(entityName)}`);
             const responseData = await zkbResponse.json();
 
             if (responseData.error) {
@@ -319,7 +329,7 @@ console.log('type', type);
                 last10KillsLossesContent.innerHTML = '<p>Please wait - retrieving kill and loss data...</p>';
             }
 
-            const last10Response = await fetch(`/combatIntel/config/get_last_10_kills_losses.php?entityId=${entityId}&entityType=${entityType}`);
+            const last10Response = await fetch(`/config/get_last_10_kills_losses.php?entityId=${entityId}&entityType=${entityType}`);
             const last10Data = await last10Response.json();
 
             console.log('loadLast10KillsLosses - last10Data:', last10Data);

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grim Intel - Local Analyzer</title>
+    <link rel="stylesheet" href="style/pilots.css">
+</head>
+
+<body>
+
+    <div class="controls">
+        <h2>Local Chat Analyzer</h2>
+        <textarea id="pasteArea" placeholder="Paste Pilot Names here (from Local Chat)..."></textarea>
+        <button id="analyzeBtn">Analyze Local</button>
+	<button id="clearBtn" class="btn" style="background-color: #444; margin-right: 10px;">Clear / Reset</button>
+    </div>
+    <div id="summaryBar" class="summary-container" style="display:none;">
+        <div class="summary-item">
+            <span class="sum-label">Total Pilots</span>
+            <span class="sum-value" id="sumTotal">0</span>
+        </div>
+        <div class="summary-item threat-high-border">
+            <span class="sum-label">High Threat</span>
+            <span class="sum-value" id="sumHigh">0</span>
+        </div>
+        <div class="summary-item threat-medium-border">
+            <span class="sum-label">Medium Threat</span>
+            <span class="sum-value" id="sumMed">0</span>
+        </div>
+        <div class="summary-item threat-low-border">
+            <span class="sum-label">Low Threat</span>
+            <span class="sum-value" id="sumLow">0</span>
+        </div>
+    </div>
+
+    <div id="cardGrid"></div>
+    <div id="cardGrid"></div>
+
+    <script src="script/pilots.js"></script>
+</body>
+
+</html>

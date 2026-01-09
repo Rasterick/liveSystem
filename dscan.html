@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D-Scan Analysis</title>
+    <link rel="stylesheet" href="/style/scan.css" />
+    .
+  </head>
+  <body>
+    <div class="content-wrapper">
+      <h1>Horizon's Threat Analysis</h1>
+
+      <div class="top-buttons">
+        <button id="copyUrlButton">Copy Current URL</button>
+        <!-- *** NEW BUTTON ADDED *** -->
+        <button id="saveAndShareButton">Save & Get Shareable Link</button>
+      </div>
+
+      <div class="additional-inputs">
+        <div>
+          <label for="scanLocationInput">Location of scan initiation:</label>
+          <input
+            type="text"
+            id="scanLocationInput"
+            placeholder="Nearest Celestial or Wormhole"
+          />
+        </div>
+        <div>
+          <label for="playersInStructuresInput"
+            >Total People in Structures:</label
+          >
+          <input
+            type="number"
+            id="playersInStructuresInput"
+            min="0"
+            value="0"
+          />
+        </div>
+        <div>
+          <label for="systemInput">System:</label>
+          <input
+            type="text"
+            id="systemInput"
+            placeholder="J123456"
+            pattern="J\d{6}"
+          />
+        </div>
+      </div>
+
+      <div class="system-info-container" id="systemInfoContainer">
+        <!-- System scan links and Time/Date will be generated here -->
+      </div>
+
+      <div class="input-area-container">
+        <textarea
+          id="inputText"
+          placeholder="Copy and Paste D-Scan (Select a row, Ctrl-A, Ctrl-C then Ctrl-V to paste here)"
+        ></textarea>
+        <div class="recon-ships-input-area">
+          <h3>Recon Ships</h3>
+          <div>
+            <label for="curseCount">Curse:</label
+            ><input type="number" id="curseCount" value="0" min="0" />
+          </div>
+          <div>
+            <label for="rookCount">Rook:</label
+            ><input type="number" id="rookCount" value="0" min="0" />
+          </div>
+          <div>
+            <label for="lachesisCount">Lachesis:</label
+            ><input type="number" id="lachesisCount" value="0" min="0" />
+          </div>
+          <div>
+            <label for="huginnCount">Huginn:</label
+            ><input type="number" id="huginnCount" value="0" min="0" />
+          </div>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button id="analyseButton">Analyse</button>
+        <button id="cancelButton">Cancel</button>
+      </div>
+
+      <div id="resultsArea">
+        <div class="table-container" id="classSummaryTableContainer">
+          <!-- Class summary table will be generated here -->
+        </div>
+        <div class="table-container" id="shipSummaryTableContainer">
+          <!-- Ship summary table will be generated here -->
+        </div>
+        <div class="table-container" id="unrecognizedEntriesTableContainer">
+          <!-- Unrecognized entries table will be generated here -->
+        </div>
+        <div id="malformedLinesInfo">
+          <!-- Malformed lines info will be shown here -->
+        </div>
+      </div>
+    </div>
+
+    <script src="script/dscanscript.js"></script>
+  </body>
+</html>
