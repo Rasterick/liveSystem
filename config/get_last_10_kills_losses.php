@@ -143,6 +143,10 @@ curl_multi_close($mhZkb);
 $killsSummaries = json_decode($zkbKillsData, true) ?: [];
 $lossesSummaries = json_decode($zkbLossesData, true) ?: [];
 
+$killsSummaries = array_slice($killsSummaries, 0, 10);
+$lossesSummaries = array_slice($lossesSummaries, 0, 10);
+
+
 // Step 3: Fetch full killmails in parallel
 $kills = executeCurlMulti($killsSummaries);
 $losses = executeCurlMulti($lossesSummaries);

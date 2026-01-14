@@ -4,12 +4,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const copyUrlButton = document.getElementById('copy-url-button');
 
     // Check for URL parameters on page load
-    const urlParams = new URLSearchParams(window.location.search);
-    const entityNameFromUrl = urlParams.get('name');
-    if (entityNameFromUrl) {
-        intelInput.value = entityNameFromUrl;
-        getIntelButton.click();
-    }
+    //const urlParams = new URLSearchParams(window.location.search);
+    //const entityNameFromUrl = urlParams.get('name');
+    //if (entityNameFromUrl) {
+    //    intelInput.value = entityNameFromUrl;
+    //    getIntelButton.click();
+    //}
 
     copyUrlButton.addEventListener('click', () => {
         const entityName = intelInput.value.trim();
@@ -201,8 +201,8 @@ console.log('type', type);
         }
 
         const pilotName = name; // 'name' is already available in this scope
-        const message = `${name} appears to be quite ${dangerText}, and has ${totalKills} kills and ${totalLosses} losses.${seederStatus}`;
-        alert(message);
+        //const message = `${name} appears to be quite ${dangerText}, and has ${totalKills} kills and ${totalLosses} losses.${seederStatus}`;
+        //alert(message);
 
         charHtml += `
             <p><span class="info-label">Gang Ratio:</span> ${data.gangRatio ?? 0}%</p>
@@ -326,8 +326,15 @@ console.log('type', type);
 
         try {
             if (last10KillsLossesContent) {
-                last10KillsLossesContent.innerHTML = '<p>Please wait - retrieving kill and loss data...</p>';
-            }
+    		// Reserve 500px of vertical space immediately so the layout doesn't jump later
+    		last10KillsLossesContent.innerHTML = `
+        		<div style="min-height: 500px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(0,0,0,0.2); border-radius: 4px;">
+            		<div style="font-size: 1.2rem; color: #aaa;">
+                	<i class="fas fa-satellite-dish fa-spin"></i> Retrieving Combat Logs...
+            		</div>
+        		</div>
+    		`;
+	    }
 
             const last10Response = await fetch(`/config/get_last_10_kills_losses.php?entityId=${entityId}&entityType=${entityType}`);
             const last10Data = await last10Response.json();
@@ -689,4 +696,16 @@ console.log('type', type);
             if (dropdown) dropdown.style.display = 'none';
         });
     });
+    // 4. TRIGGER THE CLICK (Now that the brain is ready!)
+    // Move this block to the very bottom, right before the closing "});"
+    const urlParams = new URLSearchParams(window.location.search);
+    const entityNameFromUrl = urlParams.get('name');
+    
+    if (entityNameFromUrl) {
+        // Decode the URI component to handle spaces (Tyrom+hir -> Tyrom hir)
+        intelInput.value = decodeURIComponent(entityNameFromUrl);
+        
+        // Now when we click, the listener above exists to catch it!
+        getIntelButton.click();
+    }
 });

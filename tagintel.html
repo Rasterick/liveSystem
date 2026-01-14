@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intel and Tag System </title>
+    <link rel="stylesheet" href="style/tagintel.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+    <script src="script/tagintel.js" defer></script>
+    <script src="script/tagintel.js" defer></script>
+
+
+</head>
+
+<body>
+
+    <div class="intel-console expanded">
+        <div class="corner tl"></div>
+        <div class="corner tr"></div>
+        <div class="corner bl"></div>
+        <div class="corner br"></div>
+
+        <div class="dashboard-columns">
+
+            <div class="col-left">
+
+                <div class="header-row">
+                    <h1>INTEL SYSTEM</h1>
+                </div>
+
+                <div class="tab-container">
+                    <button class="tab-btn active" onclick="switchTab('lookup')">
+                        <i class="fas fa-search"></i> SEARCH
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('ingest')">
+                        <i class="fas fa-satellite-dish"></i> INGEST TOOL
+                    </button>
+                </div>
+
+                <div id="mode-lookup" class="mode-section">
+                    <form id="intelForm">
+                        <div class="form-group">
+                            <label>TARGET PILOT</label>
+                            <input type="text" id="charName" placeholder="Enter Name..." autocomplete="off">
+                        </div>
+                        <button type="submit" class="btn-submit">INITIATE SCAN</button>
+                    </form>
+
+                    <div id="left-panel-content" class="dashboard-hidden" style="display:none;">
+                        <div id="dossier-card" class="dossier-container">
+                            <div class="dossier-identity">
+                                <img id="pilot-portrait" src="" alt="Pilot" class="dossier-portrait">
+                                <div class="dossier-names">
+                                    <h2 id="disp-name">PILOT NAME</h2>
+                                    <div class="dossier-meta" id="disp-age">00y 00m</div>
+                                    <div class="dossier-corp">
+                                        <span class="icon">☗</span> <span id="disp-corp">Corp</span>
+                                    </div>
+                                    <div class="dossier-corp" id="row-alliance" style="display:none;">
+                                        <span class="icon">☖</span> <span id="disp-ally">Ally</span>
+                                    </div>
+                                </div>
+                                <div class="threat-badge-container">
+                                    <div id="threat-val" class="threat-value">0%</div>
+                                </div>
+                            </div>
+                            <div id="disp-tags" class="pilot-tags-list"></div>
+
+                            <div class="dossier-stats">
+                                <div class="stat-row"><span class="label">KILLS:</span><span class="value"
+                                        id="disp-kills">0</span></div>
+                                <div class="stat-row"><span class="label">LOSSES:</span><span class="value text-red"
+                                        id="disp-losses">0</span></div>
+                                <div class="stat-row"><span class="label">K/D:</span><span class="value text-cyan"
+                                        id="disp-kd">0.0</span></div>
+                                <div class="stat-row"><span class="label">ISK:</span><span class="value text-gold"
+                                        id="disp-isk">0 B</span></div>
+                                <div class="stat-row"><span class="label">SEC:</span><span class="value"
+                                        id="disp-sec">0.0</span></div>
+                            </div>
+                        </div>
+
+                        <div class="intel-lists-container">
+                            <div class="list-column">
+                                <h4>Top Ships</h4>
+                                <ul id="list-top-ships" class="intel-list"></ul>
+                            </div>
+                            <div class="list-column">
+                                <h4>Top Systems</h4>
+                                <ul id="list-top-systems" class="intel-list"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="mode-ingest" class="mode-section" style="display:none;">
+                    <div class="form-group"
+                        style="background:rgba(0,0,0,0.3); padding:10px; border:1px solid #333; margin-bottom:20px;">
+                        <label style="color:var(--highlight-cyan);"><i class="fas fa-search"></i> TAG HUNTER</label>
+                        <div style="display:flex; gap:10px;">
+                            <input type="text" id="tagSearchInput"
+                                placeholder="Search for existing tags (e.g. 'Theban' or '☠')..." style="flex:1;">
+                            <button type="button" class="btn-submit" onclick="searchTags()"
+                                style="width:auto; padding:0 20px;">FIND</button>
+                        </div>
+                        <div id="tag-results" style="margin-top:10px; font-size:0.85rem; color:#ccc;"></div>
+                    </div>
+                    <div class="form-group">
+                        <label style="color:var(--highlight-cyan);">CURRENT SYSTEM (OPTIONAL)</label>
+                        <input type="text" id="solarSystemInput" placeholder="e.g. J123456 or Jita" autocomplete="off"
+                            style="margin-bottom: 15px; border-color: #444;">
+
+                        <label>PASTE D-SCAN RESULTS</label>
+                        <textarea id="rawDscan" placeholder="Paste scan lines here..."></textarea>
+                        <button type="button" class="btn-submit" onclick="parseDscanInput()">PARSE DATA</button>
+                    </div>
+
+                    <div id="ingest-staging" style="display:none;">
+                        <div class="workbench-header">
+                            <div class="col-id">#</div>
+                            <div class="col-tag">TAG</div>
+                            <div class="col-ship">SHIP</div>
+                            <div class="col-pilot">PILOT NAME</div>
+                            <div class="col-action">ACTION</div>
+                        </div>
+                        <div id="staging-rows">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="status-display" style="display:none; margin-top:15px;"></div>
+            </div>
+
+            <div class="col-right">
+                <div id="right-panel-placeholder">
+                    <div class="placeholder-icon"><i class="fas fa-radar"></i></div>
+                    <div class="placeholder-text">SYSTEM STANDBY</div>
+                </div>
+
+                <div id="right-panel-content" class="dashboard-hidden" style="display:none;">
+                    <div class="intel-grid">
+                        <div class="intel-panel">
+                            <h3><span class="icon">⚠</span> SUSPECTED ALTS</h3>
+                            <div id="list-alts" class="list-container"></div>
+                        </div>
+
+                        <div class="intel-panel">
+                            <h3><span class="icon">❖</span> ASSOCIATES & DOCTRINE</h3>
+                            <div id="grid-associates" class="assoc-grid-container"></div>
+                        </div>
+
+                        <div class="intel-panel">
+                            <h3><span class="icon">☊</span> SHARED TAG NETWORK</h3>
+                            <div id="intel-graph" style="width: 100%; height: 500px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

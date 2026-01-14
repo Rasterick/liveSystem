@@ -4,8 +4,16 @@ body {
     color: #fff;
     margin: 0;
     padding: 0;
-    background-image: url('/tempRepo/combatIntel/images/background.jpg'); /* Placeholder for a space background */
+    background-image: url('/combatIntel/images/background.jpg'); /* Placeholder for a space background */
     background-size: cover;
+}
+
+:root {
+    --bg-dark: #0a0a0a;          /* Deep Space Black */
+    --bg-panel: rgba(20, 20, 20, 0.95); /* Slightly transparent panel */
+    --border-color: #444;        /* Subtle definition */
+    --highlight-cyan: #00f0ff;   /* The Vanguard "Electric" Cyan */
+    --text-dim: #cccccc;         /* Readable grey */
 }
 
 .header {
@@ -19,7 +27,7 @@ body {
 
 .header-title {
     font-size: 24px;
-    color: #00aaff;
+    color: var(--highlight-cyan);
     margin-right: 20px;
 }
 
@@ -39,15 +47,29 @@ body {
 
 .intel-button {
     padding: 8px 15px;
-    border: 1px solid #00aaff;
-    background-color: #0077cc;
+    border:1px solid var(--border-color);
+    background-color: #01243b;
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
+.toggle-kills-losses{
+    padding: 1px 1px;
+    border:1px solid var(--border-color);
+    background-color: #01243b;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s; 
+}
+
+.toggle-kills-losses:hover {
+    background: #7ac1f0;
+}
+
+
 .intel-button:hover {
-    background-color: #0055aa;
+    background: #7ac1f0;
 }
 
 .top-nav ul {
@@ -110,39 +132,84 @@ body {
 }
 
 .info-box {
-    background-color: #1a1a1a;
-    border: 1px solid #333;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Depth shadow */
     display: flex;
     flex-direction: column;
     height: 40vh; /* Fixed height based on viewport */
+    backdrop-filter: blur(4px); /* subtle glass effect if you have a background img */
 }
 
 .info-box-header {
-    background-color: #2a2a2a;
-    padding: 10px;
-    font-size: 18px;
-    color: #00aaff;
-    border-bottom: 1px solid #333;
+    background-color: rgba(0, 0, 0, 0.4); /* Darker header */
+    padding: 12px 15px;
+    font-size: 1.1rem;
+    font-family: 'Roboto Mono', monospace; /* Tech/Intel font feel */
+    font-weight: bold;
+    color: var(--highlight-cyan); /* The Vanguard Cyan */
+    border-bottom: 1px solid var(--highlight-cyan); /* A thin cyan line separates header */
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-transform: uppercase; /* Makes it feel more like a header */
+    letter-spacing: 1px;
 }
 
 .entity-links a {
-    color: #00aaff;
+    color: #fff;
     text-decoration: none;
-    margin-left: 10px;
-    font-size: 14px;
+    margin-left: 15px;
+    font-size: 0.85rem;
+    font-weight: normal;
+    opacity: 0.7;
+    transition: all 0.2s;
+}
+
+.entity-links a:hover {
+    color: var(--highlight-cyan);
+    opacity: 1;
+    text-shadow: 0 0 5px var(--highlight-cyan); /* Glowing effect on hover */
 }
 
 .info-box-content {
-    padding: 10px;
+    padding: 15px;
     flex-grow: 1;
-    overflow-y: auto; /* Add vertical scroll for overflow */
+    overflow-y: auto;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+}
+
+/* Scrollbar Styling (Webkit only - Chrome/Edge/Safari) */
+/* This makes the scrollbar fit the theme instead of being a white block */
+.info-box-content::-webkit-scrollbar {
+    width: 8px;
+}
+.info-box-content::-webkit-scrollbar-track {
+    background: #111;
+}
+.info-box-content::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+.info-box-content::-webkit-scrollbar-thumb:hover {
+    background: var(--highlight-cyan);
 }
 
 .info-box-content p {
-    margin: 5px 0; /* Reduced line spacing */
+    margin: 6px 0;
+    line-height: 1.4;
+    border-bottom: 1px solid #222; /* Very subtle separator for lines */
+    padding-bottom: 2px;
+}
+
+/* Specific span class for labels (e.g. "Danger Ratio:") to make them pop */
+.info-label {
+    color: #888;
+    font-size: 12px;
+    /*font-weight: bold;
+    font-size: 0.65rem;
+    text-transform: uppercase;*/
 }
 
 .chart-container {
@@ -169,7 +236,7 @@ body {
 .chart-container h4 {
     margin: 0; /* Remove default margins */
     padding-top: 5px; /* Add some padding above the title */
-    color: #00aaff;
+    color: #00f0ff;
     flex-shrink: 0; /* Prevent h4 from shrinking */
 }
 
