@@ -1,10 +1,5 @@
 <?php
 // 1. Database Connection Configuration
-//$host = 'db';                  // **CRUCIAL: Use the Docker service name**
-//$db   = 'mysqlDB';
-//$user = 'peter';
-//$pass = 'codwings1';
-//$charset = 'utf8mb4';
 
 require_once __DIR__ . '/../../config/db.php';
 
